@@ -92,13 +92,16 @@ function ECS() {
 	 * 
 	 * Optionally takes a list of component names to add to the entity (with default state data).
 	 * 
+	 * Optionally takes a customID (instead of just an incrementing integer).
+	 *
 	 * ```js
 	 * var id1 = ecs.createEntity()
 	 * var id2 = ecs.createEntity([ 'some-component', 'other-component' ])
+	 * var myId = var id2 = ecs.createEntity(null, "myId")
 	 * ```
 	*/
-	this.createEntity = function (compList) {
-		var id = UID++
+	this.createEntity = function (compList, customId) {
+		var id = customId || UID++
 		if (compList && compList.length) {
 			compList.forEach(compName => self.addComponent(id, compName))
 		}
